@@ -10,14 +10,15 @@ import { getStorage } from "firebase/storage";
 // 2. CONFIGURACIÓN DEL PROYECTO
 // ===============================
 
+// Usamos import.meta.env para asegurar que se lean las variables de Netlify/Vite
 const firebaseConfig = {
-  apiKey: "AIzaSyAn-FiM3C0YY0h-iGo7qAfc-HMTHkrZVsE",
-  authDomain: "proyecto1-538ad.firebaseapp.com",
-  projectId: "proyecto1-538ad",
-  storageBucket: "proyecto1-538ad.firebasestorage.app",
-  messagingSenderId: "62948047378",
-  appId: "1:62948047378:web:ba355ea935b75e65a176cb",
-  measurementId: "G-549TZ96JL8"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 // ===============================
@@ -37,4 +38,5 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 // Analytics (opcional — solo funciona en producción HTTPS)
-getAnalytics(app);
+// Asegúrate de que esta línea esté comentada o que la variable exista si da error de build
+// getAnalytics(app);
