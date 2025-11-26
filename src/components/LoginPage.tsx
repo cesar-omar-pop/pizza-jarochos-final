@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Importamos las funciones de Firebase necesarias
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 // Importamos la instancia 'auth' que inicializamos en firebase.js
-import { auth } from './firebase'; 
+import { auth } from '../firebase'; //
 
 import { Button } from './ui/button';
 import { Input } from './ui/input';
