@@ -556,7 +556,6 @@ export {
 };
 
 
-
 /* =====================================
    FIX BLOQUEO SCROLL EN MÓVIL
    ===================================== */
@@ -567,18 +566,16 @@ function unlockMobileScroll() {
   document.documentElement.style.height = "auto";
 }
 
-/* Ejecutar siempre en móvil */
 if (window.innerWidth <= 768) {
   window.addEventListener("load", unlockMobileScroll);
   window.addEventListener("resize", unlockMobileScroll);
 }
 
-
 /* =====================================
    FIX HEADER ALTURA FORZADA
    ===================================== */
 function fixHeaderMobile() {
-  const header = document.querySelector("header");
+  const header = document.querySelector("header.main-header");
   if (!header) return;
 
   if (window.innerWidth <= 768) {
@@ -590,3 +587,17 @@ function fixHeaderMobile() {
 
 window.addEventListener("load", fixHeaderMobile);
 window.addEventListener("resize", fixHeaderMobile);
+
+/* =====================================
+   MENU HAMBURGUESA FUNCIONAL
+   ===================================== */
+document.addEventListener("DOMContentLoaded", function() {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenuWrapper = document.getElementById("mobileMenuWrapper");
+
+  if (mobileMenuBtn && mobileMenuWrapper) {
+    mobileMenuBtn.addEventListener("click", function() {
+      mobileMenuWrapper.classList.toggle("open");
+    });
+  }
+});

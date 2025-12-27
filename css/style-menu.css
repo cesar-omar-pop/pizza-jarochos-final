@@ -526,7 +526,7 @@ body {
 }
 
 /* =====================================================
-   HEADER RESPONSIVE - HAMBURGUESA AJUSTADO PARA MENU.HTML
+   FIX HEADER MOBILE - MENÚ COMPLETO VISIBLE COMO CATALOGO
    ===================================================== */
 @media (max-width: 768px) {
 
@@ -534,167 +534,50 @@ body {
     overflow-x: hidden;
   }
 
-  /* Contenedor principal del header */
+  /* Header principal */
   header.main-header {
+    position: static !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Contenido interno */
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: auto !important;
-    position: static !important;
     overflow: visible !important;
-    padding: 10px 15px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 8px;
   }
 
-  .header-content {
+  /* Navegación completa visible */
+  .main-nav {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 8px;
   }
 
-  /* Logo centrado */
-  .logo-title .brand-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .header-logo-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 5px;
-  }
-
-  .brand-name-text {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-
-  .slogan {
-    font-size: 0.85rem;
-    color: #555;
-  }
-
-  /* Botón menú móvil */
-  .mobile-menu-btn {
-    display: block;
-    font-size: 1.8rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--color-accent, #e63900);
-    margin: 5px 0;
-    z-index: 10; /* para que siempre quede encima */
-  }
-
-  /* Contenedor del menú y usuario */
-  .mobile-menu-wrapper {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .mobile-menu-wrapper.open {
-    display: flex;
-    max-height: 80vh; /* scroll si es muy largo */
-    overflow-y: auto;
-    transition: max-height 0.3s ease;
-  }
-
-  /* Navegación */
-  .mobile-menu-wrapper nav.main-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .mobile-menu-wrapper nav.main-nav a.nav-item {
-    display: block;
+  .main-nav .nav-item {
     width: 100%;
     padding: 12px;
+    text-align: center;
     font-size: 0.95rem;
-    text-align: center;
-    background-color: var(--color-surface, #fff);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--color-text, #333);
-    transition: 0.2s;
   }
 
-  .mobile-menu-wrapper nav.main-nav a.nav-item:hover {
-    background-color: var(--color-accent-light, #fceae9);
-  }
-
-  /* Área de usuario */
-  .mobile-menu-wrapper .user-area {
+  /* Área usuario */
+  .user-area {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.85rem;
-  }
-
-  .mobile-menu-wrapper .user-area #user-info {
     text-align: center;
+    margin-top: 10px;
   }
 
-  .mobile-menu-wrapper .logout-btn {
-    background: var(--color-destructive, #d4183d);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-
-  .mobile-menu-wrapper .logout-btn:hover {
-    background: var(--color-accent, #e63900);
-  }
-
-  /* Evitar que main se superponga */
+  /* El main baja después del header */
   main {
     margin-top: 0 !important;
-  }
-}
-
-/* =========================================
-   DESKTOP - ocultar botón móvil y mostrar menú horizontal
-   ========================================= */
-@media (min-width: 769px) {
-  .mobile-menu-btn {
-    display: none;
-  }
-
-  .mobile-menu-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .mobile-menu-wrapper nav.main-nav {
-    flex-direction: row !important;
-    gap: 15px;
-  }
-
-  .mobile-menu-wrapper nav.main-nav a.nav-item {
-    padding: 5px 10px;
-    font-size: 1rem;
-  }
-
-  .mobile-menu-wrapper .user-area {
-    flex-direction: row;
-    gap: 10px;
   }
 }
