@@ -346,14 +346,25 @@
     word-wrap: break-word;
   }
 
+  /* --- Modales ocultos por defecto --- */
   .modal-overlay {
-    display: flex;
+    display: none; /* ¡Muy importante! */
     justify-content: center;
     align-items: center;
     overflow-y: auto; /* scroll interno si el contenido es alto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
   }
 
   .close-button {
     font-size: 24px;
+    cursor: pointer;
   }
 }
+
