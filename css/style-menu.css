@@ -525,31 +525,38 @@ body {
     transition: background 0.3s;
 }
 
-
-
-/* =========================================
-   HEADER RESPONSIVE - MOBILE
-   ========================================= */
+/* =====================================================
+   HEADER RESPONSIVE - HAMBURGUESA AJUSTADO PARA MENU.HTML
+   ===================================================== */
 @media (max-width: 768px) {
 
-  /* Contenedor principal del header */
-  .main-header {
-    width: 100%;
-    height: auto;
-    overflow: visible;
-    padding: 10px 15px;
-    box-sizing: border-box;
+  html, body {
+    overflow-x: hidden;
   }
 
-  .header-content {
+  /* Contenedor principal del header */
+  header.main-header {
+    width: 100%;
+    height: auto !important;
+    position: static !important;
+    overflow: visible !important;
+    padding: 10px 15px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    width: 100%;
+    gap: 8px;
   }
 
-  /* Logo + texto centrado */
+  .header-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Logo centrado */
   .logo-title .brand-wrapper {
     display: flex;
     flex-direction: column;
@@ -578,15 +585,16 @@ body {
   /* Botón menú móvil */
   .mobile-menu-btn {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--color-accent, #e63900);
     margin: 5px 0;
+    z-index: 10; /* para que siempre quede encima */
   }
 
-  /* Contenedor menú y usuario oculto por defecto */
+  /* Contenedor del menú y usuario */
   .mobile-menu-wrapper {
     display: none;
     flex-direction: column;
@@ -595,9 +603,11 @@ body {
     width: 100%;
   }
 
-  /* Abrir menú */
   .mobile-menu-wrapper.open {
     display: flex;
+    max-height: 80vh; /* scroll si es muy largo */
+    overflow-y: auto;
+    transition: max-height 0.3s ease;
   }
 
   /* Navegación */
@@ -611,8 +621,8 @@ body {
   .mobile-menu-wrapper nav.main-nav a.nav-item {
     display: block;
     width: 100%;
-    padding: 10px;
-    font-size: 0.9rem;
+    padding: 12px;
+    font-size: 0.95rem;
     text-align: center;
     background-color: var(--color-surface, #fff);
     border-radius: 8px;
@@ -651,15 +661,21 @@ body {
   .mobile-menu-wrapper .logout-btn:hover {
     background: var(--color-accent, #e63900);
   }
+
+  /* Evitar que main se superponga */
+  main {
+    margin-top: 0 !important;
+  }
 }
 
 /* =========================================
-   DESKTOP - ocultar botón móvil
+   DESKTOP - ocultar botón móvil y mostrar menú horizontal
    ========================================= */
 @media (min-width: 769px) {
   .mobile-menu-btn {
     display: none;
   }
+
   .mobile-menu-wrapper {
     display: flex !important;
     flex-direction: row !important;
@@ -680,64 +696,5 @@ body {
   .mobile-menu-wrapper .user-area {
     flex-direction: row;
     gap: 10px;
-  }
-}
-
-
-
-/* =====================================================
-   FIX HEADER MOBILE - MENÚ COMPLETO VISIBLE (IGUAL CATALOGO)
-   ===================================================== */
-@media (max-width: 768px) {
-
-  html, body {
-    overflow-x: hidden;
-  }
-
-  /* Header principal */
-  header.main-header {
-    position: static !important; /* Igual que catálogo */
-    height: auto !important;
-    min-height: unset !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Contenido interno */
-  .header-content {
-    position: static !important;
-    height: auto !important;
-    overflow: visible !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* Navegación completa visible */
-  .main-nav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .main-nav .nav-item {
-    width: 100%;
-    padding: 12px;
-    text-align: center;
-    font-size: 0.95rem;
-  }
-
-  /* Área usuario */
-  .user-area {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  /* El main baja después del header */
-  main {
-    margin-top: 0 !important;
   }
 }
