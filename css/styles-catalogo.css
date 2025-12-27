@@ -976,210 +976,45 @@
   font-size: 0.9rem;
 }
 
-
-/* ===================================
-   FIX BLOQUEO SCROLL MOVIL
-   =================================== */
-
-html, body {
-  width: 100%;
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-main,
-.catalogo-container,
-.products-section,
-#products-grid {
-  height: auto !important;
-  min-height: unset !important;
-  overflow: visible !important;
-}
-
-
-
-/* ===================================
-   FIX PANEL SUPERIOR BLOQUEANDO MÓVIL
-   =================================== */
-@media (max-width: 768px) {
-
-  header,
-  .menu-header,
-  .top-bar,
-  .header-container {
-    position: relative !important;
-    height: auto !important;
-    min-height: unset !important;
-    overflow: visible !important;
-  }
-
-  /* Evita capa invisible bloqueando clics */
-  header::before,
-  header::after {
-    display: none !important;
-  }
-
-  /* Asegura que el contenido pueda recibir clics */
-  main,
-  .catalogo-container,
-  .productos-container {
-    position: relative;
-    z-index: 1;
-  }
-}
-
 /* =====================================================
-   FIX HEADER CORTADO EN MÓVIL (MENÚ COMPLETO VISIBLE)
+   FIX HEADER MOBILE - MENÚ COMPLETO VISIBLE
    ===================================================== */
 @media (max-width: 768px) {
 
-  /* Header NO debe tener altura fija */
-  header,
-  .menu-header,
-  .top-bar {
-    height: auto !important;
-    min-height: unset !important;
-    max-height: unset !important;
-    overflow: visible !important;
+  html, body {
+    overflow-x: hidden;
   }
 
-  /* Contenedor interno del panel */
-  .header-container,
-  .menu-container {
-    height: auto !important;
-    max-height: none !important;
-    overflow-y: visible !important;
-    padding-bottom: 10px;
-  }
-
-  /* Menú de opciones: permitir que crezca */
-  nav,
-  .nav-menu {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Lista del menú */
-  .nav-menu ul {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-}
-
-
-/* =====================================================
-   FIX: HEADER MÓVIL NO DEBE COMPORTARSE COMO CARD
-   ===================================================== */
-@media (max-width: 768px) {
-
-  /* Contenedor principal del header */
-  header {
+  header.main-header {
     position: relative;
-    width: 100%;
     height: auto !important;
     overflow: visible !important;
   }
 
-  /* Evita que el header herede estilos tipo login-card */
-  header .login-card,
-  header .card,
-  header .panel,
-  header .container {
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
   }
 
-  /* Wrapper del logo */
-  .logo-wrapper {
-    position: static !important;
-    transform: none !important;
-    margin: 0 auto 10px;
-  }
-
-  /* Contenedor completo del menú */
-  nav,
-  .nav-menu,
-  .nav-menu ul {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Menú en columna completa */
-  .nav-menu ul {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 6px;
-  }
-
-  .nav-menu li {
+  .main-nav {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    gap: 8px;
   }
 
-  .nav-menu a {
+  .main-nav .nav-item {
     width: 100%;
-    display: block;
+    text-align: center;
     padding: 12px;
+    font-size: 0.95rem;
   }
-}
 
-
-/* =====================================================
-   FIX: HEADER MÓVIL NO DEBE COMPORTARSE COMO CARD
-   ===================================================== */
-@media (max-width: 768px) {
-
-  /* Contenedor principal del header */
-  header {
-    position: relative;
+  .user-area {
     width: 100%;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  /* Evita que el header herede estilos tipo login-card */
-  header .login-card,
-  header .card,
-  header .panel,
-  header .container {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Wrapper del logo */
-  .logo-wrapper {
-    position: static !important;
-    transform: none !important;
-    margin: 0 auto 10px;
-  }
-
-  /* Contenedor completo del menú */
-  nav,
-  .nav-menu,
-  .nav-menu ul {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Menú en columna completa */
-  .nav-menu ul {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 6px;
-  }
-
-  .nav-menu li {
-    width: 100%;
-  }
-
-  .nav-menu a {
-    width: 100%;
-    display: block;
-    padding: 12px;
+    text-align: center;
+    margin-top: 10px;
   }
 }
