@@ -9,43 +9,45 @@
     <link rel="stylesheet" href="css/style-menu.css"> </head>
 <body>
 
-    <header class="main-header">
-        <div class="header-content">
-            <div class="logo-title">
-                <div class="brand-wrapper"> 
-                    <img src="img/pizza.jpg" alt="Logo Pizza Jarocha" class="header-logo-img">
-                    <div class="brand-text-group">
-                        <h1 class="brand-name-text">Pizza Jarocha</h1>
-                        <span class="slogan">El sabor de Veracruz en tu mesa</span>
-                    </div>
+<header class="main-header">
+    <div class="header-content">
+
+        <!-- Logo y título -->
+        <div class="logo-title">
+            <div class="brand-wrapper"> 
+                <img src="img/pizza.jpg" alt="Logo Pizza Jarocha" class="header-logo-img">
+                <div class="brand-text-group">
+                    <h1 class="brand-name-text">Pizza Jarocha</h1>
+                    <span class="slogan">El sabor de Veracruz en tu mesa</span>
                 </div>
             </div>
-            
-            <nav class="main-nav">
-                <a href="menu.html" class="nav-item active" title="Menú">
-                    🏠 Menú
-                </a>
+        </div>
 
-                <a href="admin.html" class="nav-item" id="admin-nav-link" style="display: none;" title="Panel de Admin">
-    🛠️ Admin
-</a>
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            ☰
+        </button>
+
+        <!-- Contenedor menú y usuario -->
+        <div class="mobile-menu-wrapper" id="mobileMenuWrapper">
+            <nav class="main-nav">
+                <a href="menu.html" class="nav-item active" title="Menú">🏠 Menú</a>
+
+                <a href="admin.html" class="nav-item" id="admin-nav-link" style="display: none;" title="Panel de Admin">🛠️ Admin</a>
+
                 <a href="notifications.html" class="nav-item" id="notifications-nav-link" title="Notificaciones">
-                    <span class="material-icons" style="font-size: 1.2rem;">notifications</span> Notificaciones 
+                    <span class="material-icons" style="font-size: 1.2rem;">notifications</span> Notificaciones
                     <span id="notification-count" class="notification-badge" style="display: none;">0</span>
                 </a>
-                <a href="catalogo.html" class="nav-item" title="Catálogo">
-                    📦 Catálogo
-                </a>
-                <a href="cart.html" class="nav-item" title="Mi pedido">
-    🛒 Mi pedido
-    <span id="cart-count" class="cart-badge" style="display:none;">0</span>
-</a>
 
-                <a href="reseñas.html" class="nav-item" title="Reseñas">
-                    ⭐ Reseñas
+                <a href="catalogo.html" class="nav-item" title="Catálogo">📦 Catálogo</a>
+                <a href="cart.html" class="nav-item" title="Mi pedido">
+                    🛒 Mi pedido
+                    <span id="cart-count" class="cart-badge" style="display:none;">0</span>
                 </a>
+                <a href="reseñas.html" class="nav-item" title="Reseñas">⭐ Reseñas</a>
             </nav>
-            
+
             <div class="user-area">
                 <span id="user-info">Cargando...</span>
                 <button id="logout-button" class="logout-btn" title="Cerrar Sesión">
@@ -53,7 +55,21 @@
                 </button>
             </div>
         </div>
-    </header>
+
+    </div>
+</header>
+
+<!-- JS para toggle menú móvil -->
+<script>
+const btn = document.getElementById("mobileMenuBtn");
+const menu = document.getElementById("mobileMenuWrapper");
+
+if (btn && menu) {
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+}
+</script>
 
     <main class="menu-container">
         

@@ -524,3 +524,161 @@ body {
     border-radius: 10px;
     transition: background 0.3s;
 }
+
+
+
+/* =========================================
+   HEADER RESPONSIVE - MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+
+  /* Contenedor principal del header */
+  .main-header {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 10px 15px;
+    box-sizing: border-box;
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Logo + texto centrado */
+  .logo-title .brand-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header-logo-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
+
+  .brand-name-text {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .slogan {
+    font-size: 0.85rem;
+    color: #555;
+  }
+
+  /* Botón menú móvil */
+  .mobile-menu-btn {
+    display: block;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-accent, #e63900);
+    margin: 5px 0;
+  }
+
+  /* Contenedor menú y usuario oculto por defecto */
+  .mobile-menu-wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Abrir menú */
+  .mobile-menu-wrapper.open {
+    display: flex;
+  }
+
+  /* Navegación */
+  .mobile-menu-wrapper nav.main-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .mobile-menu-wrapper nav.main-nav a.nav-item {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: var(--color-surface, #fff);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-text, #333);
+    transition: 0.2s;
+  }
+
+  .mobile-menu-wrapper nav.main-nav a.nav-item:hover {
+    background-color: var(--color-accent-light, #fceae9);
+  }
+
+  /* Área de usuario */
+  .mobile-menu-wrapper .user-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+  }
+
+  .mobile-menu-wrapper .user-area #user-info {
+    text-align: center;
+  }
+
+  .mobile-menu-wrapper .logout-btn {
+    background: var(--color-destructive, #d4183d);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .mobile-menu-wrapper .logout-btn:hover {
+    background: var(--color-accent, #e63900);
+  }
+}
+
+/* =========================================
+   DESKTOP - ocultar botón móvil
+   ========================================= */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+  .mobile-menu-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mobile-menu-wrapper nav.main-nav {
+    flex-direction: row !important;
+    gap: 15px;
+  }
+
+  .mobile-menu-wrapper nav.main-nav a.nav-item {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+
+  .mobile-menu-wrapper .user-area {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
