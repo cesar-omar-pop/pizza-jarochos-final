@@ -234,3 +234,55 @@ input[type="password"]:focus {
     color: var(--color-destructive);
     text-decoration: none;
 }
+
+
+/* =========================================
+   LOGIN MOBILE - Formulario centrado
+   ========================================= */
+@media (max-width: 768px) {
+
+  body, html {
+    overflow-x: hidden;
+  }
+
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .login-container form {
+    width: 100%;
+    max-width: 400px; /* limita ancho en móviles grandes */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .login-container input[type="email"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .login-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .login-container .social-login,
+  .login-container .forgot-password,
+  .login-container .signup-link {
+    width: 100%;
+    text-align: center;
+  }
+}
