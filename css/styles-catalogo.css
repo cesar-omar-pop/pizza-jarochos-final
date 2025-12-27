@@ -1018,3 +1018,48 @@
     margin-top: 10px;
   }
 }
+
+
+/* =====================================================
+   FIX DEFINITIVO: HEADER NO LIMITADO A ALTURA DE PANTALLA
+   ===================================================== */
+@media (max-width: 768px) {
+
+  /* El header NO debe usar 100vh */
+  header.main-header {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Contenedor interno debe crecer */
+  .header-content {
+    height: auto !important;
+    min-height: unset !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Menú completo siempre visible */
+  .main-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .main-nav .nav-item {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+
+  /* Área de usuario visible */
+  .user-area {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
+}
+
