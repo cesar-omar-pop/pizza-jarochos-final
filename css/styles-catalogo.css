@@ -1125,3 +1125,61 @@ main,
     padding: 12px;
   }
 }
+
+
+/* =====================================================
+   FIX: HEADER MÓVIL NO DEBE COMPORTARSE COMO CARD
+   ===================================================== */
+@media (max-width: 768px) {
+
+  /* Contenedor principal del header */
+  header {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Evita que el header herede estilos tipo login-card */
+  header .login-card,
+  header .card,
+  header .panel,
+  header .container {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Wrapper del logo */
+  .logo-wrapper {
+    position: static !important;
+    transform: none !important;
+    margin: 0 auto 10px;
+  }
+
+  /* Contenedor completo del menú */
+  nav,
+  .nav-menu,
+  .nav-menu ul {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Menú en columna completa */
+  .nav-menu ul {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-menu a {
+    width: 100%;
+    display: block;
+    padding: 12px;
+  }
+}
