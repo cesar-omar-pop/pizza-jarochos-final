@@ -581,3 +581,37 @@ body {
     margin-top: 0 !important;
   }
 }
+
+
+/* =========================================
+   CATEGORÍAS MENÚ - MOBILE RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  .category-buttons {
+    display: flex;
+    flex-wrap: wrap; /* permite que los botones bajen a otra línea si no caben */
+    gap: 8px;        /* espacio entre botones */
+    justify-content: center; /* centrado horizontal */
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .category-buttons button {
+    flex: 1 1 auto;        /* se adapta al tamaño disponible */
+    min-width: 100px;      /* ancho mínimo para que no se achiquen demasiado */
+    max-width: 48%;         /* máximo ancho por botón para 2 por fila si es necesario */
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: var(--color-surface, #fff);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .category-buttons button:hover {
+    background-color: var(--color-accent-light, #fceae9);
+  }
+}
+
