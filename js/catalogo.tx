@@ -1,0 +1,51 @@
+// js/auth-guard.js
+// Lógica de inicio de sesión y redirección.
+
+import { auth } from "./firebase-config.js";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    
+    // 1. Verificar si el usuario ya está logueado (Redirección de guardia)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // Si está logueado, redirige al menú
+            window.location.href = 'menu.html';
+        }
+        // Si no está logueado, se queda en index.html
+    });
+
+    // 2. Manejar el envío del formulario de login
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = loginForm.querySelector('#email').value;
+            const password = loginForm.querySelector('#password').value;
+            const loginButton = loginForm.querySelector('#login-button');
+
+            loginButton.textContent = 'Iniciando...';
+            loginButton.disabled = true;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                // Si el login es exitoso, onAuthStateChanged manejará la redirección a menu.html
+                // Ya que la comprobación está arriba.
+            } catch (error) {
+                console.error("Error de login:", error.code, error.message);
+                
+                let errorMessage = "Error de inicio de sesión. Revisa tu correo y contraseña.";
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage = "No hay un usuario registrado con ese correo.";
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = "Contraseña incorrecta.";
+                }
+
+                alert(errorMessage);
+                loginButton.textContent = 'Iniciar sesión';
+                loginButton.disabled = false;
+            }
+        });
+    }
+});
