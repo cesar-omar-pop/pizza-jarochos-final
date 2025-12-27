@@ -234,12 +234,12 @@ input[type="password"]:focus {
     color: var(--color-destructive);
     text-decoration: none;
 }
-
 /* =========================================
    LOGIN MOBILE - Ajuste completo
    ========================================= */
 @media (max-width: 768px) {
 
+  /* Contenedor principal */
   body.login-body {
     padding-top: 20px;
     display: flex;
@@ -252,21 +252,24 @@ input[type="password"]:focus {
   .login-container {
     width: 95%;
     max-width: 400px;
-    padding: 20px 15px;
-    margin: 0 auto;
+    padding: 25px 15px;
+    margin: 10px auto;
     text-align: center;
     box-sizing: border-box;
     overflow: visible;
   }
 
+  /* Login Card y Modales */
   .login-card,
   .modal-content {
     width: 100%;
     padding: 20px 15px;
     text-align: center;
     box-sizing: border-box;
+    overflow: visible;
   }
 
+  /* Logo */
   .logo-wrapper {
     margin-bottom: 15px;
   }
@@ -278,6 +281,7 @@ input[type="password"]:focus {
     margin: 0 auto 10px;
   }
 
+  /* Títulos y subtítulos */
   .card-title {
     font-size: 1.5rem;
     margin-bottom: 5px;
@@ -290,6 +294,7 @@ input[type="password"]:focus {
     word-wrap: break-word;
   }
 
+  /* Formularios */
   .login-form {
     display: flex;
     flex-direction: column;
@@ -305,14 +310,17 @@ input[type="password"]:focus {
     box-sizing: border-box;
   }
 
+  /* Botones */
   .btn-primary,
   .btn-google {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
     white-space: normal; /* Para que el texto largo baje de línea si es necesario */
+    box-sizing: border-box;
   }
 
+  /* Links y textos secundarios */
   .register-text,
   .reset-password-text,
   .btn-link {
@@ -327,27 +335,17 @@ input[type="password"]:focus {
     word-wrap: break-word;
   }
 
+  /* Modales overlay */
   .modal-overlay {
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-y: auto; /* scroll interno si el contenido es alto */
+    padding: 10px;
   }
 
+  /* Botón cerrar modal */
   .close-button {
     font-size: 24px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .login-container {
-    margin-top: 10px; /* antes estaba 0 auto o 20px, lo bajamos un poco */
-    padding: 25px 15px; /* más espacio interno si quieres */
-  }
-
-  .login-card,
-  .modal-content {
-    padding: 20px 15px;
   }
 }
