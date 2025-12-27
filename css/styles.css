@@ -349,3 +349,14 @@ input[type="password"]:focus {
     font-size: 24px;
   }
 }
+
+
+/* Evita que el teclado móvil desplace demasiado el contenedor */
+@media (max-width: 768px) {
+  .login-container {
+    position: relative;
+    top: 0;
+    transform: translateY(0);
+    transition: transform 0.2s ease-out;
+  }
+}
