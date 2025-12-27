@@ -977,156 +977,55 @@
 }
 
 
+/* ===================================
+   FIX BLOQUEO SCROLL MOVIL
+   =================================== */
 
+html, body {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
-
-/* =====================================================
-   RESPONSIVE CATÁLOGO - MOBILE
-   ===================================================== */
-@media (max-width: 768px) {
-
-  /* Evita scroll horizontal */
-  body {
-    overflow-x: hidden;
-  }
-
-  /* Contenedor principal del catálogo */
-  .catalogo-container,
-  .productos-container,
-  .grid-catalogo {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 10px;
-    width: 100%;
-  }
-
-  /* Tarjeta de producto */
-  .producto-card,
-  .producto,
-  .item-card {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  /* Imagen del producto */
-  .producto-card img,
-  .producto img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  /* Títulos y textos */
-  .producto h3,
-  .producto-card h3 {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .producto p,
-  .producto-card p {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-
-  /* Botón agregar */
-  .producto button,
-  .producto-card button {
-    width: 100%;
-    margin-top: 10px;
-    font-size: 0.95rem;
-  }
+main,
+.catalogo-container,
+.products-section,
+#products-grid {
+  height: auto !important;
+  min-height: unset !important;
+  overflow: visible !important;
 }
 
 
 
-
-
-/* =====================================================
-   RESPONSIVE HEADER / PANEL SUPERIOR - MOBILE
-   ===================================================== */
+/* ===================================
+   FIX PANEL SUPERIOR BLOQUEANDO MÓVIL
+   =================================== */
 @media (max-width: 768px) {
 
-  /* Header principal */
   header,
-  .header,
+  .menu-header,
   .top-bar,
-  .menu-header {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+  .header-container {
+    position: relative !important;
+    height: auto !important;
+    min-height: unset !important;
+    overflow: visible !important;
   }
 
-  /* Contenedor interno del header */
-  .header-container,
-  .menu-container,
-  .top-bar-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 10px;
+  /* Evita capa invisible bloqueando clics */
+  header::before,
+  header::after {
+    display: none !important;
   }
 
-  /* Logo + texto */
-  .logo,
-  .logo-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .logo img {
-    max-width: 120px;
-    height: auto;
-  }
-
-  /* Texto del logo */
-  .logo h1,
-  .logo-title {
-    font-size: 1.3rem;
-  }
-
-  .logo p,
-  .logo-slogan {
-    font-size: 0.9rem;
-  }
-
-  /* Menú de navegación */
-  nav,
-  .nav-menu {
-    width: 100%;
-  }
-
-  .nav-menu ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 0;
-    margin: 0;
-  }
-
-  .nav-menu li {
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-menu a {
-    display: block;
-    padding: 10px;
-    font-size: 0.9rem;
-  }
-
-  /* Usuario / logout */
-  .user-info,
-  .user-panel {
-    width: 100%;
-    text-align: center;
-    font-size: 0.85rem;
+  /* Asegura que el contenido pueda recibir clics */
+  main,
+  .catalogo-container,
+  .productos-container {
+    position: relative;
+    z-index: 1;
   }
 }
+
