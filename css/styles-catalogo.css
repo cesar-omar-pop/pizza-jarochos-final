@@ -1029,3 +1029,41 @@ main,
   }
 }
 
+/* =====================================================
+   FIX HEADER CORTADO EN MÓVIL (MENÚ COMPLETO VISIBLE)
+   ===================================================== */
+@media (max-width: 768px) {
+
+  /* Header NO debe tener altura fija */
+  header,
+  .menu-header,
+  .top-bar {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    overflow: visible !important;
+  }
+
+  /* Contenedor interno del panel */
+  .header-container,
+  .menu-container {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding-bottom: 10px;
+  }
+
+  /* Menú de opciones: permitir que crezca */
+  nav,
+  .nav-menu {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Lista del menú */
+  .nav-menu ul {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
