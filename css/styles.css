@@ -236,61 +236,63 @@ input[type="password"]:focus {
 }
 
 /* =========================================
-   LOGIN MOBILE - Ajuste completo
+   MODALES LOGIN MOBILE - Ajuste completo
    ========================================= */
 @media (max-width: 768px) {
 
-  body.login-body {
-    padding-top: 20px;
+  /* Contenedor de modales */
+  .modal-overlay {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    overflow-y: auto; /* Permite scroll si no cabe todo */
+    align-items: flex-start; /* inicia desde arriba */
+    padding: 20px 10px; /* espacio lateral */
+    overflow-y: auto; /* scroll si el contenido es alto */
+    box-sizing: border-box;
   }
 
-  .login-container {
-    width: 95%;
+  /* Contenido del modal */
+  .modal-content,
+  .login-card {
+    width: 100%;
     max-width: 400px;
     padding: 20px 15px;
     margin: 0 auto;
     text-align: center;
     box-sizing: border-box;
-    overflow: visible;
   }
 
-  .login-card,
-  .modal-content {
-    width: 100%;
-    padding: 20px 15px;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  .logo-wrapper {
+  /* Logo dentro de modales */
+  .modal-content .logo-wrapper,
+  .login-card .logo-wrapper {
     margin-bottom: 15px;
   }
 
-  .login-logo-img {
+  .modal-content .login-logo-img,
+  .login-card .login-logo-img {
     width: 50px;
     height: 50px;
     object-fit: cover;
     margin: 0 auto 10px;
   }
 
-  .card-title {
+  /* Títulos y slogan */
+  .modal-content .card-title,
+  .login-card .card-title {
     font-size: 1.5rem;
     margin-bottom: 5px;
     word-wrap: break-word;
   }
 
-  .login-slogan {
+  .modal-content .login-slogan,
+  .login-card .login-slogan {
     font-size: 0.95rem;
     margin-bottom: 20px;
     word-wrap: break-word;
   }
 
-  .login-form {
+  /* Formularios */
+  .modal-content form,
+  .login-card form {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -305,18 +307,20 @@ input[type="password"]:focus {
     box-sizing: border-box;
   }
 
+  /* Botones */
   .btn-primary,
   .btn-google {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
-    white-space: normal; /* Para que el texto largo baje de línea si es necesario */
+    white-space: normal;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
   }
 
+  /* Texto de links */
   .register-text,
   .reset-password-text,
   .btn-link {
@@ -331,13 +335,7 @@ input[type="password"]:focus {
     word-wrap: break-word;
   }
 
-  .modal-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto; /* scroll interno si el contenido es alto */
-  }
-
+  /* Botón cerrar */
   .close-button {
     font-size: 24px;
   }
