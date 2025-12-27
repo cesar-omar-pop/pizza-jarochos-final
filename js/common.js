@@ -554,3 +554,39 @@ export {
     setDoc, 
     serverTimestamp // Exportaciones de Firestore necesarias para Admin.js
 };
+
+
+
+/* =====================================
+   FIX BLOQUEO SCROLL EN MÓVIL
+   ===================================== */
+function unlockMobileScroll() {
+  document.body.style.overflow = "auto";
+  document.body.style.height = "auto";
+  document.documentElement.style.overflow = "auto";
+  document.documentElement.style.height = "auto";
+}
+
+/* Ejecutar siempre en móvil */
+if (window.innerWidth <= 768) {
+  window.addEventListener("load", unlockMobileScroll);
+  window.addEventListener("resize", unlockMobileScroll);
+}
+
+
+/* =====================================
+   FIX HEADER ALTURA FORZADA
+   ===================================== */
+function fixHeaderMobile() {
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  if (window.innerWidth <= 768) {
+    header.style.height = "auto";
+    header.style.maxHeight = "none";
+    header.style.position = "static";
+  }
+}
+
+window.addEventListener("load", fixHeaderMobile);
+window.addEventListener("resize", fixHeaderMobile);
