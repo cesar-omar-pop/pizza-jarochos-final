@@ -1019,47 +1019,53 @@
   }
 }
 
-
 /* =====================================================
-   FIX DEFINITIVO: HEADER NO LIMITADO A ALTURA DE PANTALLA
+   FIX REAL: HEADER MOVIL NO PUEDE SER FIXED / STICKY
    ===================================================== */
 @media (max-width: 768px) {
 
-  /* El header NO debe usar 100vh */
+  /* Quitar comportamiento fijo */
   header.main-header {
+    position: static !important;
     height: auto !important;
     min-height: unset !important;
     max-height: none !important;
     overflow: visible !important;
   }
 
-  /* Contenedor interno debe crecer */
+  /* Contenido interno */
   .header-content {
+    position: static !important;
     height: auto !important;
-    min-height: unset !important;
     overflow: visible !important;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
-  /* Menú completo siempre visible */
+  /* Navegación completa visible */
   .main-nav {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
 
   .main-nav .nav-item {
     width: 100%;
-    text-align: center;
     padding: 12px;
+    text-align: center;
   }
 
-  /* Área de usuario visible */
+  /* Área usuario */
   .user-area {
     width: 100%;
     text-align: center;
-    margin-top: 8px;
+    margin-top: 10px;
+  }
+
+  /* El main baja después del header */
+  main {
+    margin-top: 0 !important;
   }
 }
 
