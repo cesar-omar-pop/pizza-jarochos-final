@@ -1039,3 +1039,94 @@
     font-size: 0.95rem;
   }
 }
+
+
+
+
+
+/* =====================================================
+   RESPONSIVE HEADER / PANEL SUPERIOR - MOBILE
+   ===================================================== */
+@media (max-width: 768px) {
+
+  /* Header principal */
+  header,
+  .header,
+  .top-bar,
+  .menu-header {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Contenedor interno del header */
+  .header-container,
+  .menu-container,
+  .top-bar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Logo + texto */
+  .logo,
+  .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .logo img {
+    max-width: 120px;
+    height: auto;
+  }
+
+  /* Texto del logo */
+  .logo h1,
+  .logo-title {
+    font-size: 1.3rem;
+  }
+
+  .logo p,
+  .logo-slogan {
+    font-size: 0.9rem;
+  }
+
+  /* Menú de navegación */
+  nav,
+  .nav-menu {
+    width: 100%;
+  }
+
+  .nav-menu ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Usuario / logout */
+  .user-info,
+  .user-panel {
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+}
