@@ -235,48 +235,59 @@ input[type="password"]:focus {
     text-decoration: none;
 }
 
-
-
 /* =========================================
-   LOGIN MOBILE - Ajuste responsive
+   LOGIN MOBILE - Ajuste completo
    ========================================= */
 @media (max-width: 768px) {
 
   body.login-body {
-    padding-top: 20px; /* menos padding superior en móvil */
+    padding-top: 20px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    min-height: 100vh;
+    overflow-y: auto; /* Permite scroll si no cabe todo */
   }
 
-  .login-container,
-  .modal-content {
-    width: 90%;        /* ocupa casi toda la pantalla */
-    max-width: 400px;  /* sigue limitado para móviles grandes */
+  .login-container {
+    width: 95%;
+    max-width: 400px;
+    padding: 20px 15px;
     margin: 0 auto;
-    padding: 25px 15px;
     text-align: center;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  .login-card,
+  .modal-content {
+    width: 100%;
+    padding: 20px 15px;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .logo-wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .login-logo-img {
     width: 50px;
     height: 50px;
     object-fit: cover;
-    margin: 0 auto;
+    margin: 0 auto 10px;
   }
 
   .card-title {
     font-size: 1.5rem;
     margin-bottom: 5px;
+    word-wrap: break-word;
   }
 
   .login-slogan {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 20px;
+    word-wrap: break-word;
   }
 
   .login-form {
@@ -289,8 +300,9 @@ input[type="password"]:focus {
   input[type="email"],
   input[type="password"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
+    box-sizing: border-box;
   }
 
   .btn-primary,
@@ -298,6 +310,7 @@ input[type="password"]:focus {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
+    white-space: normal; /* Para que el texto largo baje de línea si es necesario */
   }
 
   .register-text,
@@ -305,17 +318,20 @@ input[type="password"]:focus {
   .btn-link {
     font-size: 0.9rem;
     text-align: center;
+    word-wrap: break-word;
   }
 
   .auth-message-box {
     font-size: 0.9rem;
     padding: 8px;
+    word-wrap: break-word;
   }
 
   .modal-overlay {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto; /* scroll interno si el contenido es alto */
   }
 
   .close-button {
