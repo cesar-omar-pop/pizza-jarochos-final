@@ -235,41 +235,40 @@ input[type="password"]:focus {
     text-decoration: none;
 }
 /* =========================================
-   LOGIN MOBILE - Ajuste completo
+   LOGIN MOBILE - Ajuste definitivo
    ========================================= */
 @media (max-width: 768px) {
 
-  /* Contenedor principal */
   body.login-body {
-    padding-top: 20px;
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    overflow-y: auto; /* Permite scroll si no cabe todo */
+    overflow-y: auto;
   }
 
-  .login-container {
+  main.login-container {
     width: 95%;
     max-width: 400px;
-    padding: 25px 15px;
-    margin: 10px auto;
-    text-align: center;
-    box-sizing: border-box;
-    overflow: visible;
-  }
-
-  /* Login Card y Modales */
-  .login-card,
-  .modal-content {
-    width: 100%;
+    margin: 0 auto;
     padding: 20px 15px;
     text-align: center;
     box-sizing: border-box;
-    overflow: visible;
   }
 
-  /* Logo */
+  .login-card,
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .logo-wrapper {
     margin-bottom: 15px;
   }
@@ -278,28 +277,26 @@ input[type="password"]:focus {
     width: 50px;
     height: 50px;
     object-fit: cover;
-    margin: 0 auto 10px;
+    margin: 0 auto;
   }
 
-  /* Títulos y subtítulos */
   .card-title {
     font-size: 1.5rem;
-    margin-bottom: 5px;
-    word-wrap: break-word;
+    margin: 0 0 5px 0;
+    word-break: break-word;
   }
 
   .login-slogan {
     font-size: 0.95rem;
-    margin-bottom: 20px;
-    word-wrap: break-word;
+    margin-bottom: 15px;
+    word-break: break-word;
   }
 
-  /* Formularios */
-  .login-form {
+  form.login-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    text-align: center;
+    width: 100%;
   }
 
   input[type="email"],
@@ -308,43 +305,44 @@ input[type="password"]:focus {
     padding: 12px;
     font-size: 1rem;
     box-sizing: border-box;
+    word-break: break-word;
   }
 
-  /* Botones */
   .btn-primary,
   .btn-google {
+    display: block;
     width: 100%;
     padding: 12px;
     font-size: 1rem;
-    white-space: normal; /* Para que el texto largo baje de línea si es necesario */
+    white-space: normal;
+    word-break: break-word;
     box-sizing: border-box;
   }
 
-  /* Links y textos secundarios */
   .register-text,
   .reset-password-text,
   .btn-link {
     font-size: 0.9rem;
+    display: block;
     text-align: center;
-    word-wrap: break-word;
+    word-break: break-word;
+    margin: 5px 0;
   }
 
   .auth-message-box {
     font-size: 0.9rem;
     padding: 8px;
-    word-wrap: break-word;
+    word-break: break-word;
   }
 
-  /* Modales overlay */
   .modal-overlay {
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow-y: auto; /* scroll interno si el contenido es alto */
+    align-items: flex-start;
+    overflow-y: auto;
     padding: 10px;
   }
 
-  /* Botón cerrar modal */
   .close-button {
     font-size: 24px;
   }
