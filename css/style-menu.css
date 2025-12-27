@@ -615,3 +615,65 @@ body {
   }
 }
 
+
+
+
+/* =========================================
+   PIZZA ITEM - AJUSTE MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+
+  .pizza-item {
+    display: flex;
+    flex-direction: column; /* elementos bajan si no caben */
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .price-and-actions {
+    display: flex;
+    flex-direction: column; /* cantidad + añadir bajan a columna */
+    gap: 6px;
+    width: 100%;
+  }
+
+  .quantity-control {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .quantity-control button {
+    padding: 5px 10px;
+    font-size: 0.95rem;
+  }
+
+  .btn-agregar {
+    width: 100%; /* toma toda la fila debajo de la cantidad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--color-accent, #e63900);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-agregar:hover {
+    background-color: var(--color-accent-dark, #d12700);
+  }
+}
