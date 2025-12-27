@@ -616,10 +616,8 @@ body {
 }
 
 
-
-
 /* =========================================
-   PIZZA ITEM - AJUSTE MOBILE
+   PIZZA ITEM - AJUSTE MOBILE + CANTIDAD
    ========================================= */
 @media (max-width: 768px) {
 
@@ -645,18 +643,40 @@ body {
     width: 100%;
   }
 
+  /* --------------------------
+     Selector de cantidad
+     -------------------------- */
   .quantity-control {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center; /* centra los botones y el input */
     align-items: center;
     gap: 5px;
+    width: 100%;
   }
 
   .quantity-control button {
-    padding: 5px 10px;
-    font-size: 0.95rem;
+    flex: 1 1 auto; /* que los botones crezcan si hace falta */
+    padding: 8px 0;
+    font-size: 1rem;
+    min-width: 40px; /* ancho mínimo para que se vea */
+    border-radius: 6px;
+    border: 1px solid #ccc;
   }
 
+  .quantity-control input.quantity-input {
+    flex: 2 1 auto; /* input más ancho que botones */
+    text-align: center;
+    font-size: 1rem;
+    padding: 6px 0;
+    min-width: 50px; /* ancho mínimo para leer el número */
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  /* --------------------------
+     Botón añadir al carrito
+     -------------------------- */
   .btn-agregar {
     width: 100%; /* toma toda la fila debajo de la cantidad */
     display: flex;
