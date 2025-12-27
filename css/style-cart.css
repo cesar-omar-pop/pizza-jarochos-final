@@ -451,3 +451,81 @@
         order: 2;
     }
 }
+
+
+
+
+/* =========================================
+   CARRITO MOBILE - Ajuste completo responsive
+   ========================================= */
+@media (max-width: 768px) {
+
+  /* Cada producto en columna flexible */
+  .cart-item {
+    display: flex;
+    flex-direction: column; /* baja elementos si no caben */
+    align-items: stretch;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Nombre y descripción ocupan toda la fila */
+  .cart-item .item-name,
+  .cart-item .item-description {
+    flex-basis: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  /* Contenedor de precio + cantidad + botón eliminar */
+  .cart-item .price-and-actions {
+    display: flex;
+    flex-wrap: wrap; /* permite bajar a otra línea si no cabe */
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cart-item .price-tag,
+  .cart-item .quantity-control,
+  .cart-item .btn-delete {
+    flex: 1 1 auto; /* ajusta ancho automáticamente */
+    min-width: 70px; /* ancho mínimo para que no se comprima */
+  }
+
+  /* Controles de cantidad */
+  .cart-item .quantity-control {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cart-item .quantity-control input.quantity-input {
+    width: 45px;
+    text-align: center;
+  }
+
+  /* Botón eliminar */
+  .cart-item .btn-delete {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Botones de acción final (confirmar / vaciar) */
+  #confirm-order-btn,
+  #empty-cart-btn {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  /* Ajustes de texto general */
+  .cart-item .item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
