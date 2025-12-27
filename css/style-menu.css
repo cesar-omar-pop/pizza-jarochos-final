@@ -697,3 +697,50 @@ body {
     background-color: var(--color-accent-dark, #d12700);
   }
 }
+
+
+
+
+/* =========================================
+   HEADER DESKTOP / TABLET - mostrar menú completo
+   ========================================= */
+@media (min-width: 769px) {
+
+  /* Ocultar botón hamburguesa */
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  /* Mostrar contenedor de menú y usuario como fila completa */
+  .mobile-menu-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .mobile-menu-wrapper nav.main-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px;
+  }
+
+  .mobile-menu-wrapper nav.main-nav a.nav-item {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+
+  .mobile-menu-wrapper .user-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+
+  .mobile-menu-wrapper .logout-btn {
+    margin-left: 5px;
+  }
+}
