@@ -236,53 +236,89 @@ input[type="password"]:focus {
 }
 
 
+
 /* =========================================
-   LOGIN MOBILE - Formulario centrado
+   LOGIN MOBILE - Ajuste responsive
    ========================================= */
 @media (max-width: 768px) {
 
-  body, html {
-    overflow-x: hidden;
-  }
-
-  .login-container {
+  body.login-body {
+    padding-top: 20px; /* menos padding superior en móvil */
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
   }
 
-  .login-container form {
-    width: 100%;
-    max-width: 400px; /* limita ancho en móviles grandes */
+  .login-container,
+  .modal-content {
+    width: 90%;        /* ocupa casi toda la pantalla */
+    max-width: 400px;  /* sigue limitado para móviles grandes */
+    margin: 0 auto;
+    padding: 25px 15px;
+    text-align: center;
+  }
+
+  .logo-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .login-logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+
+  .login-slogan {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .login-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
     text-align: center;
   }
 
-  .login-container input[type="email"],
-  .login-container input[type="password"] {
+  input[type="email"],
+  input[type="password"] {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
-    box-sizing: border-box;
   }
 
-  .login-container button {
+  .btn-primary,
+  .btn-google {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
-    cursor: pointer;
   }
 
-  .login-container .social-login,
-  .login-container .forgot-password,
-  .login-container .signup-link {
-    width: 100%;
+  .register-text,
+  .reset-password-text,
+  .btn-link {
+    font-size: 0.9rem;
     text-align: center;
+  }
+
+  .auth-message-box {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .close-button {
+    font-size: 24px;
   }
 }
