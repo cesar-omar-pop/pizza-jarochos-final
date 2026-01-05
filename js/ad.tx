@@ -1,0 +1,200 @@
+// app.js (CÓDIGO COMPLETO Y SEGURO CON MODALES Y LOGIN TEMPORAL)
+
+import { auth } from "./firebase-config.js"; 
+import { 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail,
+    signOut,
+    onAuthStateChanged,
+    setPersistence,
+    browserSessionPersistence
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ----------------------------------------------------------------
+    // --- PERSISTENCIA TEMPORAL Y CIERRE DE SESIÓN AUTOMÁTICO ---
+    // ----------------------------------------------------------------
+    setPersistence(auth, browserSessionPersistence)
+        .then(() => signOut(auth)) // Cierra cualquier sesión activa
+        .catch(err => console.error("Error estableciendo persistencia o cerrando sesión:", err));
+
+    // ----------------------------------------------------------------
+    // --- REFERENCIAS A ELEMENTOS DEL DOM (Login Principal) ---
+    // ----------------------------------------------------------------
+    const loginForm = document.getElementById('login-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const openRegisterButton = document.getElementById('register-btn');
+    const openResetButton = document.getElementById('reset-password-btn');
+    const errorMessageMain = document.getElementById('auth-message');
+
+    // ----------------------------------------------------------------
+    // --- REFERENCIAS AL MODAL DE REGISTRO ---
+    // ----------------------------------------------------------------
+    const registerModal = document.getElementById('register-modal');
+    const closeModalRegister = registerModal.querySelector('.close-button');
+    const registerFormModal = document.getElementById('register-form-modal');
+    const newEmailInput = document.getElementById('new-email');
+    const newPasswordInput = document.getElementById('new-password');
+    const modalErrorMessage = document.getElementById('modal-error-message');
+
+    // ----------------------------------------------------------------
+    // --- REFERENCIAS AL MODAL DE RESTABLECER CONTRASEÑA ---
+    // ----------------------------------------------------------------
+    const resetModal = document.getElementById('reset-modal');
+    const closeModalReset = document.getElementById('close-reset-modal');
+    const resetFormModal = document.getElementById('reset-form-modal');
+    const resetEmailInput = document.getElementById('reset-email');
+    const resetMessageBox = document.getElementById('reset-message-box');
+
+    // ----------------------------------------------------------------
+    // --- FUNCIONES DE UTILIDAD ---
+    // ----------------------------------------------------------------
+    const displayMessage = (message, element, isError = true) => {
+        element.textContent = message;
+        element.style.color = isError ? 'var(--color-destructive, #d4183d)' : 'green';
+        element.style.display = 'block';
+    };
+    const hideMessage = (element) => {
+        element.style.display = 'none';
+        element.textContent = '';
+    };
+
+    // ----------------------------------------------------------------
+    // --- MANEJO DE MODALES ---
+    // ----------------------------------------------------------------
+    openRegisterButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        registerModal.style.display = 'block';
+        hideMessage(modalErrorMessage);
+        newEmailInput.value = '';
+        newPasswordInput.value = '';
+    });
+    closeModalRegister.addEventListener('click', () => registerModal.style.display = 'none');
+
+    openResetButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        resetModal.style.display = 'block';
+        hideMessage(resetMessageBox);
+        resetEmailInput.value = emailInput.value;
+    });
+    closeModalReset.addEventListener('click', () => resetModal.style.display = 'none');
+
+    window.addEventListener('click', (event) => {
+        if (event.target === registerModal) registerModal.style.display = 'none';
+        if (event.target === resetModal) resetModal.style.display = 'none';
+    });
+
+    // ----------------------------------------------------------------
+    // --- REDIRECCIÓN DESPUÉS DEL LOGIN ---
+    // ----------------------------------------------------------------
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            window.location.href = 'menu.html';
+        }
+    });
+
+    // ----------------------------------------------------------------
+    // --- MANEJAR LOGIN PRINCIPAL ---
+    // ----------------------------------------------------------------
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideMessage(errorMessageMain);
+        
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        const loginButton = document.getElementById('login-button');
+
+        loginButton.textContent = "Iniciando...";
+        loginButton.disabled = true;
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            displayMessage("¡Login exitoso! Redirigiendo...", errorMessageMain, false);
+        } catch (error) {
+            let userMessage = "Ocurrió un error al iniciar sesión.";
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-login-credentials') {
+                userMessage = "Correo electrónico o contraseña incorrectos.";
+            } else if (error.code === 'auth/invalid-email') {
+                userMessage = "El formato del correo electrónico es inválido.";
+            }
+            displayMessage(userMessage, errorMessageMain);
+            console.error(error.code, error.message);
+        } finally {
+            loginButton.textContent = "Iniciar Sesión";
+            loginButton.disabled = false;
+        }
+    });
+
+    // ----------------------------------------------------------------
+    // --- MANEJAR REGISTRO (MODAL) ---
+    // ----------------------------------------------------------------
+    registerFormModal.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideMessage(modalErrorMessage);
+        
+        const email = newEmailInput.value;
+        const password = newPasswordInput.value;
+        const regButton = registerFormModal.querySelector('.btn-primary');
+
+        regButton.textContent = "Registrando...";
+        regButton.disabled = true;
+
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            displayMessage("✅ ¡Registro exitoso! Ya puedes iniciar sesión.", modalErrorMessage, false);
+            setTimeout(() => {
+                registerModal.style.display = 'none';
+                emailInput.value = email;
+                passwordInput.focus();
+            }, 1000);
+        } catch (error) {
+            let userMessage = "Ocurrió un error al registrarse.";
+            if (error.code === 'auth/email-already-in-use') userMessage = "Este correo electrónico ya está registrado.";
+            else if (error.code === 'auth/weak-password') userMessage = "La contraseña debe tener al menos 6 caracteres.";
+            displayMessage(userMessage, modalErrorMessage);
+            console.error(error.code, error.message);
+        } finally {
+            regButton.textContent = "Registrarse";
+            regButton.disabled = false;
+        }
+    });
+
+    // ----------------------------------------------------------------
+    // --- RESTABLECER CONTRASEÑA (MODAL) ---
+    // ----------------------------------------------------------------
+    resetFormModal.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideMessage(resetMessageBox);
+        
+        const email = resetEmailInput.value;
+        const resetButton = document.getElementById('reset-button-modal');
+
+        if (!email) {
+            displayMessage("Ingresa tu correo electrónico.", resetMessageBox);
+            return;
+        }
+        
+        resetButton.textContent = "Enviando...";
+        resetButton.disabled = true;
+
+        try {
+            await sendPasswordResetEmail(auth, email);
+            displayMessage(`📧 Se ha enviado un enlace de restablecimiento a ${email}. ¡Revisa tu bandeja de entrada!`, resetMessageBox, false);
+            setTimeout(() => resetModal.style.display = 'none', 3000);
+        } catch (error) {
+            let userMessage = "Ocurrió un error al enviar el correo.";
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email') {
+                userMessage = `El correo ${email} no está registrado o es inválido.`;
+            }
+            displayMessage(userMessage, resetMessageBox);
+            console.error(error.code, error.message);
+        } finally {
+            resetButton.textContent = "Enviar Enlace";
+            resetButton.disabled = false;
+        }
+    });
+
+});

@@ -1,0 +1,553 @@
+/* ========================================================= */
+/* --- 1. Estilos Generales y Contenedor de la Página --- */
+/* ========================================================= */
+
+.notifications-page-container {
+    max-width: 1000px; /* Hacemos el contenedor más ancho */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para las secciones internas */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* Sombra más pronunciada */
+}
+
+.notifications-page-container h2 {
+    font-size: 2rem;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- Estilo de la lista de notificaciones --- */
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Más espacio entre notificaciones */
+}
+
+/* ========================================================= */
+/* --- 2. Diseño de Cada Notificación (Más Grande y PRO) --- */
+/* ========================================================= */
+
+.notification-item {
+    padding: 20px; /* Relleno grande */
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estado de no leída (Resaltado con color) */
+.notification-unread {
+    background-color: #fcebeb; /* Fondo rosado/rojo muy claro para resaltar */
+    border-left: 5px solid #e53935; /* Línea de color a la izquierda (Rojo Jarocho) */
+    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.05); /* Sombra sutil con el color principal */
+}
+
+/* Estado de leída (Neutro) */
+.notification-read {
+    background-color: #ffffff;
+    border-left: 5px solid #f0f0f0;
+}
+
+.notification-item:hover {
+    background-color: #fafafa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notification-read:hover {
+    border-color: #ccc;
+}
+
+/* --- Encabezado y Cuerpo --- */
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.notification-title {
+    font-size: 1.25rem; /* Título más grande */
+    font-weight: 700;
+    color: #333;
+    flex-grow: 1;
+}
+
+.notification-time {
+    font-size: 0.85rem;
+    color: #888;
+    white-space: nowrap;
+}
+
+.notification-message {
+    font-size: 1rem;
+    color: #555;
+    margin-left: 40px; /* Alineación con el texto del icono */
+}
+
+/* --- Iconos (Mejora de color) --- */
+
+.notification-icon {
+    font-size: 1.8rem; /* Icono grande */
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Colores de íconos según el tipo */
+.notification-icon-delivery { color: #f9a825; /* Amarillo/Naranja */ }
+.notification-icon-payment { color: #388e3c; /* Verde */ }
+.notification-icon-promotion { color: #1e88e5; /* Azul */ }
+.notification-icon-status, .notification-icon-message { color: #e53935; /* Rojo Jarocho */ } 
+
+/* Indicador de No Leída */
+.read-indicator {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 8px;
+    height: 8px;
+    background-color: #e53935; 
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+.notification-read .read-indicator {
+    display: none; /* Ocultar si está leído, aunque la clase .notification-read no debería tenerlo */
+}
+/* ========================================================= */
+/* --- 3. Diseño de Botones (Acciones Globales) --- */
+/* ========================================================= */
+
+.notifications-actions {
+    padding-top: 20px;
+    /* CAMBIO CLAVE: Usar Flexbox para alinear y espaciar los botones */
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    gap: 15px; /* Espacio entre botones */
+}
+
+/* Botón Secundario (Marcar todo como leído / Vaciar / Eliminar Seleccionadas) - Estilo Ghost PRO */
+.btn-secondary {
+    padding: 12px 24px; /* Más grande */
+    border-radius: 8px; 
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+    color: #e53935; /* Texto rojo */
+    border: 2px solid #e53935; /* Borde rojo Jarocho */
+    box-shadow: none; 
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none; /* Asegura que no tenga subrayado si es un <a> */
+}
+
+.btn-secondary:hover {
+    background-color: #e53935; /* Invertir colores al pasar el mouse */
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3); /* Sombra roja sutil */
+    transform: translateY(-1px);
+}
+
+.btn-secondary:disabled {
+    opacity: 0.5;
+    color: #999;
+    border-color: #ccc;
+    background-color: transparent;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- ESTILOS ADICIONALES PARA EL PANEL --- */
+
+/* Estilo para los botones de limpieza (Vaciar Panel y Eliminar Seleccionadas) */
+#clear-panel-button, #delete-selected-button {
+    color: #777; /* Color de texto más neutral */
+    border-color: #ccc;
+}
+
+#clear-panel-button:hover, #delete-selected-button:hover {
+    background-color: #f5f5f5; /* Fondo más claro al pasar el mouse */
+    color: #333;
+    border-color: #999;
+    box-shadow: none;
+    transform: translateY(-1px);
+}
+
+/* Estilo para el botón de Marcar Todo como Leído (más primario entre los secundarios) */
+#mark-all-read-button:hover {
+    background-color: #e53935; 
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
+}
+
+/* ----------------------------------------------------------------- */
+/* --- El resto de tus estilos (1, 2 y 4) se mantienen sin cambios --- */
+/* ----------------------------------------------------------------- */
+
+/* ========================================================= */
+/* --- 4. Diseño de la Sección de Respuesta/Chat --- */
+/* ========================================================= */
+
+.notification-reply-section {
+    padding: 15px 0 0 0;
+    margin-top: 15px;
+    border-top: 1px dashed #eee;
+}
+
+.reply-messages-container {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reply-message {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.reply-user {
+    align-self: flex-end;
+    background-color: #e53935; /* Rojo Jarocho para el usuario */
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.reply-admin {
+    align-self: flex-start;
+    background-color: #f0f0f0; /* Gris claro para el administrador */
+    color: #333;
+    border-bottom-left-radius: 2px;
+}
+
+.reply-time {
+    display: block;
+    font-size: 0.7rem;
+    text-align: right;
+    margin-top: 3px;
+    opacity: 0.7;
+}
+
+.reply-form {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.reply-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.reply-form input[type="text"]:focus {
+    border-color: #e53935;
+    outline: none;
+}
+
+/* Botón de Enviar (Solid PRO) */
+.btn-reply {
+    padding: 10px 18px;
+    border-radius: 8px; 
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #e53935; 
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-reply:hover {
+    background-color: #c62828;
+    transform: translateY(-1px);
+}
+
+
+#toast-container {
+    position: fixed;
+    top: 20px; /* Posición superior */
+    right: 20px;
+    z-index: 10000; /* Asegurar que esté por encima de todo */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-toast {
+    background-color: var(--color-surface); /* Fondo blanco de la tarjeta */
+    color: var(--color-text);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    min-width: 300px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    border-left: 5px solid var(--color-success); /* Borde por defecto */
+}
+
+.app-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.app-toast.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.toast-icon {
+    font-size: 1.8rem;
+    margin-right: 15px;
+    color: var(--color-success);
+}
+
+.toast-content strong {
+    display: block;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.toast-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+/* Variantes de color para el toast */
+.app-toast.toast-error { border-left-color: var(--color-destructive); }
+.app-toast.toast-error .toast-icon { color: var(--color-destructive); }
+
+.app-toast.toast-delivery { border-left-color: var(--color-accent); }
+.app-toast.toast-delivery .toast-icon { color: var(--color-accent); }
+
+.app-toast.toast-payment { border-left-color: var(--color-primary-dark); }
+.app-toast.toast-payment .toast-icon { color: var(--color-primary-dark); }
+
+
+/* ===============================
+   💬 CHAT ESTILO WHATSAPP (ROJO)
+================================ */
+
+.reply-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* Mensaje base */
+.reply-message {
+  max-width: 75%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: #fff;              /* 👈 TEXTO BLANCO */
+  word-wrap: break-word;
+}
+
+/* Usuario (derecha) */
+.reply-user {
+  align-self: flex-end;
+  background-color: #b00020; /* 🔴 ROJO */
+  border-bottom-right-radius: 4px;
+}
+
+/* Admin (izquierda) */
+.reply-admin {
+  align-self: flex-start;
+  background-color: #8e0000; /* 🔴 ROJO OSCURO */
+  border-bottom-left-radius: 4px;
+}
+
+/* Hora */
+.reply-time {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.8;
+  margin-top: 2px;
+  text-align: right;
+  color: #fff; /* 👈 BLANCO, NO AZUL */
+}
+
+/* ===============================
+   ✏️ FORM RESPUESTA
+================================ */
+
+.reply-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.reply-form input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.reply-form button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background-color: #b00020; /* 🔴 ROJO */
+  color: #fff;               /* 👈 BLANCO */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reply-form button:hover {
+  background-color: #8e0000;
+}
+
+
+
+/* =========================
+   💬 CHAT TIPO WHATSAPP (USUARIO)
+   ========================= */
+
+.reply-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  max-height: 350px; /* altura máxima, scroll si excede */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* MENSAJE BASE */
+.reply-message {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* =========================
+   👤 MENSAJE DEL USUARIO (DERECHA)
+   ========================= */
+.reply-user {
+  align-self: flex-end;
+  background: #dcf8c6; /* verde claro estilo WhatsApp */
+  color: #000;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   👑 MENSAJE DEL ADMIN (IZQUIERDA)
+   ========================= */
+.reply-admin {
+  align-self: flex-start;
+  background: #fff;
+  color: #333;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   ⏱ HORA / FECHA
+   ========================= */
+.reply-time {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.65rem;
+  opacity: 0.7;
+  text-align: right;
+}
+
+/* =========================
+   🔔 INDICADOR MENSAJE NUEVO
+   ========================= */
+.reply-new {
+  width: 8px;
+  height: 8px;
+  background: #4caf50; /* verde */
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+/* =========================
+   ✍ FORMULARIO DE RESPUESTA
+   ========================= */
+.reply-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.reply-form input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  background: #f5f5f5;
+}
+
+.reply-form button {
+  background: #128c7e; /* color WhatsApp */
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reply-form button:hover {
+  background: #075e54;
+}
+
+/* =========================
+   📱 MOBILE RESPONSIVE
+   ========================= */
+@media screen and (max-width: 480px) {
+  .reply-message {
+    max-width: 90%;
+    font-size: 0.85rem;
+  }
+
+  .reply-form input {
+    padding: 6px 8px;
+  }
+
+  .reply-form button {
+    padding: 6px 10px;
+  }
+}

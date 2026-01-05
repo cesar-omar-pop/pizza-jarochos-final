@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - Pizza Jarocha</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-menu.css"> 
+    <link rel="stylesheet" href="css/style-notifications.css">
+    <style>
+        /* Estilos para replies */
+        .reply-messages { margin-top:8px; border-left:2px solid #ddd; padding-left:6px; }
+        .reply-message { margin-bottom:4px; font-size:0.9rem; }
+        .reply-user { color:#0d6efd; }
+        .reply-admin { color:#198754; }
+        .reply-time { font-size:0.7rem; color:#999; margin-left:4px; }
+        .reply-form { display:flex; gap:6px; margin-top:6px; }
+        .reply-form input { flex:1; padding:6px; border-radius:4px; border:1px solid #ccc; }
+        .reply-form button { padding:6px 10px; border:none; border-radius:4px; background:#198754; color:#fff; cursor:pointer; }
+    </style>
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-title">
+                <div class="brand-wrapper"> 
+                    <img src="./img/pizza.jpg" alt="Logo Pizza Jarocha" class="header-logo-img">
+                    <div class="brand-text-group">
+                        <h1 class="brand-name-text">Pizza Jarocha</h1>
+                        <span class="slogan">El sabor de Veracruz en tu mesa</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="menu.html" class="nav-item" title="Menú">🏠 Menú</a>
+                <a href="notifications.html" class="nav-item active" id="notifications-nav-link" title="Notificaciones">
+                    <span class="material-icons" style="font-size: 1.2rem;">notifications</span> Notificaciones 
+                    <span id="notification-count" class="notification-count-badge">0</span>
+                </a>
+                <a href="catalogo.html" class="nav-item" title="Catálogo">📦 Catálogo</a>
+                <a href="cart.html" class="nav-item" title="Mi Carrito">🛒 Carrito</a>
+                <a href="reseñas.html" class="nav-item" title="Reseñas">⭐ Reseñas</a>
+            </nav>
+            
+            <div class="user-area">
+                <span id="user-info">Cargando...</span>
+                <button id="logout-button" class="logout-btn" title="Cerrar Sesión">
+                    <span class="material-icons">logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="notifications-page-container">
+        <h2>🔔 Tus Notificaciones</h2>
+        
+        <div class="page-notifications-content">
+            
+            <div class="notifications-actions">
+                <button id="mark-all-read-button" class="btn-secondary">
+                    <span class="material-icons">done_all</span> Marcar todo como leído
+                </button>
+                
+                <button id="delete-selected-button" class="btn-secondary btn-danger-action" style="display: none;">
+                    <span class="material-icons">delete</span> Eliminar Seleccionadas
+                </button>
+                
+                <button id="clear-panel-button" class="btn-secondary btn-danger-action">
+                    <span class="material-icons">delete_sweep</span> Limpiar Todo
+                </button>
+            </div>
+            
+            <div id="notifications-container" class="notifications-list">
+                <p class="empty-notifications-message">Cargando mensajes...</p>
+            </div>
+            
+        </div>
+    </main>
+    
+    <div id="toast-container" class="toast-container"></div>
+    <footer class="main-footer"></footer>
+    
+    <!-- SCRIPTS -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/common.js"></script> 
+    <script type="module" src="js/notification-service.js"></script>
+    <script type="module" src="js/notifications.js"></script>
+</body>
+</html>

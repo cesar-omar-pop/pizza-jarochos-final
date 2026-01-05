@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pedido - Pizza Jarocha</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-menu.css"> 
+    <link rel="stylesheet" href="css/style-cart.css"> 
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-title">
+                <div class="brand-wrapper"> 
+                    <img src="./img/pizza.jpg" alt="Logo Pizza Jarocha" class="header-logo-img">
+                    <div class="brand-text-group">
+                        <h1 class="brand-name-text">Pizza Jarocha</h1>
+                        <span class="slogan">El sabor de Veracruz en tu mesa</span>
+                    </div>
+                </div>
+            </div>
+            <a href="admin.html" class="nav-item" id="admin-nav-link" style="display: none;" title="Panel de Admin">
+    🛠️ Admin
+</a>
+            <nav class="main-nav">
+                <a href="menu.html" class="nav-item" title="Menú">
+                    🏠 Menú
+                </a>
+                <a href="notifications.html" class="nav-item" id="notifications-nav-link" title="Notificaciones">
+                    <span class="material-icons" style="font-size: 1.2rem;">notifications</span> Notificaciones 
+                    <span id="notification-count" class="notification-badge" style="display: none;">0</span>
+                </a>
+                <a href="catalogo.html" class="nav-item" title="Catálogo">
+                    📦 Catálogo
+                </a>
+                <a href="cart.html" class="nav-item active" title="Mi pedido">
+                    🛒 Mi pedido
+                    <span id="cart-count" class="cart-badge" style="display: none;">0</span>
+                </a>
+                <a href="reseñas.html" class="nav-item" title="Reseñas">
+                    ⭐ Reseñas
+                </a>
+            </nav>
+            
+            <div class="user-area">
+                <span id="user-info">Cargando...</span>
+                <button id="logout-button" class="logout-btn" title="Cerrar Sesión">
+                    <span class="material-icons">logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content-wrapper">
+        <div class="cart-grid">
+            
+            <section class="cart-details-section">
+                <div class="card-container">
+                    <h2>🍕 Mi Pedido</h2>
+                    <div id="cart-items-container" class="cart-items-list">
+                    </div>
+                </div>
+
+                <div class="card-container shipping-module">
+                    <h3>📍 Datos de Entrega</h3>
+                    <div class="delivery-inputs">
+                        <label for="address">Calle y Número:</label>
+                        <input type="text" id="address" placeholder="Ej. Calle 10 #522" required>
+                        
+                        <label for="colony">Colonia o Barrio:</label>
+                        <input type="text" id="colony" placeholder="Ej. Centro" required>
+                        
+                        <label for="notes">Notas para el Repartidor (Opcional):</label>
+                        <textarea id="notes" placeholder="Ej. Tocar dos veces, no hay timbre."></textarea>
+                    </div>
+                </div>
+
+                <div class="card-container payment-module">
+                    <h3>💳 Método de Pago</h3>
+                    <div class="payment-options">
+                        
+                        <div class="payment-option-group">
+                            <input type="radio" id="cash" name="payment-method" value="efectivo" checked>
+                            <label for="cash" class="payment-label">
+                                <span class="material-icons">payments</span>
+                                Efectivo al recibir
+                            </label>
+                        </div>
+
+                        
+                       <div class="payment-option-group">
+    <input type="radio" id="mercadopago" name="payment-method" value="mercadopago">
+    <label for="mercadopago" class="payment-label">
+        <img src="./img/mercado-pago-logo.png" alt="Mercado Pago" class="mercadopago-logo">
+        Pagar con Mercado Pago
+    </label>
+</div>
+
+                        <div class="payment-details mercadopago-details" id="mercadopago-details-section" style="display: none;">
+                            <p>Serás redirigido a la plataforma de Mercado Pago al confirmar el pedido.</p>
+                            </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="order-summary-section">
+                <div class="card-container summary-card">
+                    <h3>📝 Resumen del Pedido</h3>
+                    
+                    <div class="summary-details">
+                        <div class="summary-line">
+                            <span>Subtotal:</span>
+                            <span id="subtotal-summary" class="summary-value">$0.00 MXN</span>
+                        </div>
+                        
+                        <div class="summary-line">
+                            <span>Costo de Envío:</span>
+                            <span id="shipping-cost" class="summary-value">$50.00 MXN</span> 
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="summary-line total-line">
+                            <strong>Total a Pagar:</strong>
+                            <span id="cart-total" class="summary-value total-value">$50.00 MXN</span> 
+                        </div>
+                    </div>
+                    
+                    <div class="cart-actions-bottom">
+                        <button id="checkout-button" 
+        class="btn-primary btn-full-width" 
+        data-payment-method="efectivo">
+        Confirmar Pedido
+</button>
+                        <button id="clear-cart-button" class="btn-secondary btn-full-width">Vaciar Carrito</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    
+    <div id="toast-container" class="toast-container"></div>
+    <footer class="main-footer"></footer>
+    
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/common.js"></script>
+    <script type="module" src="js/cart.js"></script>
+</body>
+</html>

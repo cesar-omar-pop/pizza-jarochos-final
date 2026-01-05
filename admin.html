@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Panel de Administración - Pizza Jarocha</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style-menu.css">
+  <link rel="stylesheet" href="css/admin-styles.css">
+
+  <style>
+    /* Estilos mínimos para que la UI esté ordenada si no tienes admin-styles.css */
+    .hidden { display: none; }
+    .admin-tabs-container { display:flex; gap:8px; margin:12px 0; }
+    .admin-tab-button { padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:#f4f4f4; cursor:pointer; }
+    .admin-tab-button.active { background:#0d6efd; color:#fff; border-color: #0d6efd; }
+    .content-box { padding:16px; background:#fff; border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,0.05); margin-bottom:16px; }
+    .form-group { margin-bottom:12px; }
+    .btn-primary { background:#198754; color:#fff; padding:10px 14px; border:none; border-radius:8px; cursor:pointer; }
+    .btn-secondary { background:#6c757d; color:#fff; padding:8px 12px; border:none; border-radius:8px; cursor:pointer; }
+    .data-table { width:100%; border-collapse:collapse; }
+    .data-table th, .data-table td { padding:8px; border-bottom:1px solid #eee; text-align:left; }
+    .image-preview-container img { max-width:100%; max-height:150px; display:block; margin:0 auto; }
+    .pedido-item { padding:10px; border:1px solid #eee; margin-bottom:8px; border-radius:6px; }
+    .placeholder-text { color:#666; }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div class="brand-wrapper">
+        <img src="img/pizza.jpg" alt="Logo" class="header-logo-img" style="width:48px;height:48px;border-radius:6px;">
+        <div style="display:inline-block;margin-left:10px;">
+          <h1 style="margin:0;font-size:18px;">Pizza Jarocha</h1>
+          <small style="color:#666;">Panel de Administración</small>
+        </div>
+      </div>
+
+      <nav class="main-nav" style="margin-top:8px;">
+        <a href="admin.html" class="nav-item active" id="admin-nav-link" style="display:none">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding:20px; max-width:1100px; margin:0 auto;">
+    <h2>Panel de Administración👨🏽‍💼</h2>
+    <p class="subtitle">Gestión de pedidos, catálogo y notificaciones. ✍🏼</p>
+<div class="admin-tabs-container">
+  <button class="admin-tab-button active" data-target="tab-pedidos">
+    <span class="material-icons">receipt_long</span> Pedidos
+  </button>
+
+  <button class="admin-tab-button" data-target="tab-catalogo">
+    <span class="material-icons">local_offer</span> Catálogo
+  </button>
+
+  <button class="admin-tab-button" data-target="tab-notificaciones">
+    <span class="material-icons">notifications</span> Notificaciones
+  </button>
+</div>
+
+    <div class="tab-content-wrapper">
+
+
+    <!-- PEDIDOS -->
+<div id="tab-pedidos" class="tab-content">
+  <div class="content-box">
+    <h3>📦 Pedidos</h3>
+      
+<!-- ACCIONES POR FILTRO -->
+<div id="pedidos-bulk-actions" class="hidden" style="margin:12px 0;display:flex;gap:8px;">
+  <button id="btn-delete-period" class="btn-secondary">
+    🗑️ Eliminar periodo
+  </button>
+  <button id="btn-export-pdf" class="btn-primary">
+    📄 Exportar PDF
+  </button>
+</div>
+    <!-- FILTROS -->
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin:12px 0;align-items:center;">
+
+      <!-- Estado -->
+      <div>
+        <label for="pedidos-status-filter" style="font-weight:600;">Estado:</label><br>
+        <select id="pedidos-status-filter" style="padding:6px;border-radius:6px;border:1px solid #ccc;">
+          <option value="pendiente">Pendientes</option>
+          <option value="en_preparacion">En Preparación</option>
+          <option value="en_entrega">En Entrega</option>
+          <option value="entregado">Entregados</option>
+          <option value="cancelado">Cancelados</option>
+          <option value="todos">Todos</option>
+        </select>
+      </div>
+
+      <!-- FILTRO POR MES -->
+      <div>
+        <label for="pedidos-mes-filter" style="font-weight:600;">Mes:</label><br>
+        <input
+          type="month"
+          id="pedidos-mes-filter"
+          style="padding:6px;border-radius:6px;border:1px solid #ccc;"
+        />
+      </div>
+
+      <!-- FILTRO POR DÍA -->
+      <div>
+        <label for="pedidos-dia-filter" style="font-weight:600;">Día específico:</label><br>
+        <input
+          type="date"
+          id="pedidos-dia-filter"
+          style="padding:6px;border-radius:6px;border:1px solid #ccc;"
+        />
+      </div>
+
+      <!-- LIMPIAR -->
+      <div style="margin-top:18px;">
+        <button
+          id="pedidos-clear-filters"
+          class="btn-secondary"
+          type="button"
+        >
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="content-box" style="padding:8px;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Fecha / Hora</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Método</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="pedidos-list-container">
+          <tr>
+            <td colspan="6" class="placeholder-text">
+              Cargando listado de pedidos...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+      <!-- CATALOGO -->
+      <div id="tab-catalogo" class="tab-content hidden">
+        <div class="content-box form-box">
+          <h3 id="form-title">➕ Añadir Nuevo Ítem al Catálogo</h3>
+          <p class="subtitle">Sube imagen (Cloudinary) y guarda metadatos en Firestore.</p>
+
+          <form id="admin-form">
+            <div class="form-group">
+              <label for="item-type">Tipo de Ítem</label><br>
+              <select id="item-type">
+                <option value="pizza">Pizza</option>
+                <option value="combo">Combo</option>
+                <option value="bebida">Bebida</option>
+                <option value="postre">Postre</option>
+                <option value="extras">Extras</option>
+                <option value="promociones">Promoción</option>
+              </select>
+            </div>
+
+            <div id="pizza-category-div" class="hidden form-group">
+              <label for="item-category-pizza">Clasificación de Pizza</label><br>
+              <select id="item-category-pizza" name="pizza_category">
+                <option value="clasicas">Clásicas</option>
+                <option value="especiales">Especiales</option>
+                <option value="vegetarianas">Vegetarianas</option>
+                <option value="promociones">Promoción</option>
+              </select>
+            </div>
+
+            <div id="form-fields-container">
+              <div class="form-group">
+                <label for="item-name">Nombre</label>
+                <input type="text" id="item-name" placeholder="Ej: Pizza Hawaiana" required style="width:100%;padding:8px;">
+              </div>
+<div id="ingredients-wrapper">
+  <label>Ingredientes</label>
+  <div id="ingredients-container"></div>
+  <button type="button" id="add-ingredient-btn">➕ Añadir Ingrediente</button>
+</div>
+
+
+              <div class="form-group">
+                <label for="item-price">Precio (MXN)</label>
+                <input type="number" id="item-price" step="0.01" min="0" placeholder="180.00" required style="width:200px;padding:8px;">
+              </div>
+
+              <div class="form-group">
+                <label for="item-stock">Stock (opcional)</label>
+                <input type="number" id="item-stock" step="1" min="0" placeholder="10" style="width:200px;padding:8px;">
+              </div>
+
+              <div class="form-group">
+                <label for="item-image">Imagen (JPG/PNG)</label>
+                <input type="file" id="item-image" accept="image/*">
+                <div class="image-preview-container" style="margin-top:10px;">
+                  <p style="margin:0;font-size:0.9rem;color:#555;">Previsualización:</p>
+                  <img id="image-preview" src="" alt="Previsualización" style="display:none;border-radius:6px;margin-top:8px;max-height:150px;object-fit:contain;">
+                </div>
+                <span id="image-status" style="display:block;margin-top:6px;color:#007bff;font-size:0.9rem;">Sube una imagen para previsualizar.</span>
+              </div>
+            </div>
+
+            <input type="hidden" id="item-id" value="">
+            <div style="margin-top:12px;">
+              <button type="submit" class="btn-primary" id="submit-button">Guardar Ítem</button>
+              <button type="button" class="btn-secondary" id="cancel-edit-button" style="display:none;margin-left:8px;">Cancelar Edición</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="content-box" style="margin-top:16px;">
+          <h3>📋 Catálogo Actual</h3>
+          <div style="margin:8px 0;">
+            <input id="catalogo-search-input" placeholder="Buscar por nombre..." style="width:300px;padding:8px;">
+          </div>
+
+          <div class="catalogo-list-container">
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Acciones</th></tr>
+              </thead>
+              <tbody id="catalogo-table-body">
+                <tr><td colspan="5" class="placeholder-text">Cargando catálogo...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    <div id="tab-notificaciones" class="tab-content hidden">
+  <div class="content-box">
+    <h3>🔔 Notificaciones</h3>
+
+    <div id="admin-notifications-container">
+      <p class="placeholder-text">No hay notificaciones.</p>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </main>
+
+  <footer style="padding:12px;text-align:center;color:#666;">
+    © Pizza Jarocha - Admin
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/common.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

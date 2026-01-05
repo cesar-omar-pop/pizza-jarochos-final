@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas y Comentarios - Pizza Jarocha</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-menu.css"> 
+    <link rel="stylesheet" href="css/reseñas.css"> 
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-title">
+                <div class="brand-wrapper"> 
+                    <img src="./img/pizza.jpg" alt="Logo Pizza Jarocha" class="header-logo-img">
+                    <div class="brand-text-group">
+                        <h1 class="brand-name-text">Pizza Jarocha</h1>
+                        <span class="slogan">El sabor de Veracruz en tu mesa</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="menu.html" class="nav-item" title="Menú">🏠 Menú</a>
+                <a href="notifications.html" class="nav-item" id="notifications-nav-link" title="Notificaciones">
+                    <span class="material-icons" style="font-size: 1.2rem;">notifications</span> Notificaciones 
+                    <span id="notification-count" class="notification-badge" style="display: none;">0</span>
+                </a>
+                <a href="catalogo.html" class="nav-item" title="Catálogo">📦 Catálogo</a>
+                <a href="cart.html" class="nav-item" title="Mi pedido">🛒 Mi pedido</a>
+                <a href="reseñas.html" class="nav-item active" title="Reseñas">⭐ Reseñas</a>
+            </nav>
+            
+            <div class="user-area">
+                <span id="user-info">Cargando...</span>
+                <button id="logout-button" class="logout-btn" title="Cerrar Sesión">
+                    <span class="material-icons">logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content-resenas">
+        <h2>⭐ Reseñas de Nuestros Clientes</h2>
+
+        <section id="review-form-section" class="review-form-section">
+            <h3>¡Deja tu opinión!</h3>
+            <form id="review-form" class="review-form">
+                <div class="rating-input">
+                    <label>Tu Calificación:</label>
+                    <div id="rating-stars" class="rating-stars" data-current-rating="5">
+                        <span class="star material-icons" data-value="1">star</span>
+                        <span class="star material-icons" data-value="2">star</span>
+                        <span class="star material-icons" data-value="3">star</span>
+                        <span class="star material-icons" data-value="4">star</span>
+                        <span class="star material-icons" data-value="5">star</span>
+                    </div>
+                    <input type="hidden" name="rating" id="rating-value" value="5" required>
+                </div>
+
+                <div class="comment-input">
+                    <label for="comment-text">Comentario:</label>
+                    <textarea id="comment-text" rows="4" placeholder="¿Qué te pareció nuestro servicio y nuestras pizzas?" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Enviar Reseña</button>
+            </form>
+        </section>
+
+        <hr class="separator">
+
+        <section class="reviews-display-section">
+            <h3>Lo que dicen nuestros clientes:</h3>
+            <div id="reviews-container" class="reviews-container">
+                <p class="loading-message">Cargando reseñas...</p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <div id="toast-container" class="toast-container"></div>
+    <footer class="main-footer"></footer>
+    
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/common.js"></script> 
+    <script type="module" src="js/reseñas.js"></script> </body>
+</html>
